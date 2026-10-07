@@ -1,0 +1,6 @@
+outputs/
+data/
+physionet.org/
+*.csv.gz
+__pycache__/
+.DS_Store
