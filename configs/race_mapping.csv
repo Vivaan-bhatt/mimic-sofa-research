@@ -1,0 +1,34 @@
+race_raw,n_in_cohort,group,note
+WHITE,53116,White,
+WHITE - OTHER EUROPEAN,2106,White,
+WHITE - RUSSIAN,875,White,
+WHITE - EASTERN EUROPEAN,249,White,
+WHITE - BRAZILIAN,191,White,
+BLACK/AFRICAN AMERICAN,7821,Black,
+BLACK/CAPE VERDEAN,601,Black,
+BLACK/CARIBBEAN ISLAND,550,Black,
+BLACK/AFRICAN,392,Black,
+HISPANIC/LATINO - PUERTO RICAN,1102,Hispanic/Latino,
+HISPANIC OR LATINO,728,Hispanic/Latino,
+HISPANIC/LATINO - DOMINICAN,683,Hispanic/Latino,
+HISPANIC/LATINO - GUATEMALAN,204,Hispanic/Latino,
+HISPANIC/LATINO - SALVADORAN,164,Hispanic/Latino,
+HISPANIC/LATINO - COLUMBIAN,91,Hispanic/Latino,
+HISPANIC/LATINO - CUBAN,87,Hispanic/Latino,
+HISPANIC/LATINO - MEXICAN,85,Hispanic/Latino,
+HISPANIC/LATINO - HONDURAN,79,Hispanic/Latino,
+HISPANIC/LATINO - CENTRAL AMERICAN,68,Hispanic/Latino,
+ASIAN,1005,Asian,
+ASIAN - CHINESE,963,Asian,
+ASIAN - SOUTH EAST ASIAN,351,Asian,
+ASIAN - ASIAN INDIAN,230,Asian,
+ASIAN - KOREAN,68,Asian,
+OTHER,2828,Other,
+PORTUGUESE,372,Other,ambiguous label; not forced into another group (sensitivity: White)
+SOUTH AMERICAN,91,Other,ambiguous label; not forced into Hispanic/Latino (sensitivity: Hispanic/Latino)
+AMERICAN INDIAN/ALASKA NATIVE,179,Other,too small for a separate group
+NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER,117,Other,too small for a separate group
+MULTIPLE RACE/ETHNICITY,64,Other,too small for a separate group
+UNKNOWN,7588,Unknown/Declined,described only; excluded from race comparisons
+UNABLE TO OBTAIN,1697,Unknown/Declined,described only; excluded from race comparisons
+PATIENT DECLINED TO ANSWER,483,Unknown/Declined,described only; excluded from race comparisons

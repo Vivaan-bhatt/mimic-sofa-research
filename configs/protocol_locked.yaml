@@ -1,0 +1,197 @@
+# analysis_protocol.yaml  --  DRAFT v0.2 (NOT LOCKED)
+# Freeze (rename protocol_locked.yaml, commit hash) BEFORE any outcome-based analysis.
+# Items marked TODO_FREEZE need a count-only / dictionary inspection, never outcome inspection.
+
+study:
+  title: "Does replacing SOFA-1 with SOFA-2 change mortality discrimination and calibration across subgroups in MIMIC-IV?"
+  framing: >
+    SOFA-1 and SOFA-2 are organ-dysfunction descriptive scales. Mortality AUROC is
+    evidence of predictive validity, not the purpose of either score. No causal
+    claims; no "fair/unfair" verdicts. Report changes in subgroup performance gaps.
+  status: locked
+
+data:
+  source: MIMIC-IV
+  version: "3.1"
+  date_accessed: TODO_FREEZE
+  note: Credentialed patient-level data stay local. Only code and aggregate outputs are shared.
+
+sources:
+  sofa2_primary: "Ranzani OT et al. JAMA 2025;334(23):2090-2103. doi:10.1001/jama.2025.20516 (PMID 41159833)"
+  sofa2_companion: "Moreno R et al. JAMA Netw Open 2025;8(10). doi:10.1001/jamanetworkopen.2025.45040"
+  sofa2_definitions_used: "Table 2 of the author-accepted manuscript; VERIFY against published version and Supplement 2 (eMethods, eTables 1-3) before freeze"
+  sofa1: "Vincent JL et al. Intensive Care Med 1996;22(7):707-710. doi:10.1007/BF01709751"
+  sofa1_reference_implementation: "MIT-LCP/mimic-code mimic-iv/concepts/score/sofa.sql (used as a cross-check only; hourly rolling window, BigQuery derived tables)"
+
+cohort:
+  population: adult ICU stays (age >= 18 at ICU admission)
+  unit_of_analysis: first ICU stay per hospitalization (hadm_id)   # matches SOFA-2 paper exclusion of same-stay readmissions
+  exclusions:
+    - ICU readmission within the same hospital stay
+    - missing in-hospital mortality status
+    - missing or invalid ICU timestamps (14 stays in MIMIC-IV 3.1; analytic cohort 85,228 stays)
+    - ICU stay with no data in the observation window (document N)
+    - admission solely for organ donation (TODO_FREEZE: define operationally, or document as not identifiable)
+  flow_diagram: report N at every step
+  sensitivity_cohort: first ICU stay per patient (subject_id)
+  clustering: bootstrap resamples subject_id clusters (a patient with several hospitalizations is one resampling unit)
+
+window:
+  index_time: icustays.intime
+  start: intime
+  end: intime + 24h
+  boundary: "[intime, intime + 24h) ; TODO_FREEZE confirm convention and apply identically to both scores"
+  score_value_rule: worst value of each component within the window (both scores, same window, same patients)
+  sensitivity_window: worst value in first hour combined with first 24 h (as in SOFA-2 paper sensitivity), only if justified
+  sensitivity_lab_lookback: "[intime - 6h, intime + 24h) for labs and vitals (extraction already keeps this range); prespecified because ED-drawn labs before ICU arrival could change missingness"
+
+outcomes:
+  primary: in-hospital mortality (admissions.hospital_expire_flag)
+  secondary: ICU mortality = in-hospital death with deathtime between ICU intime and outtime (strict). 575 hospital deaths in the 24 h after ICU discharge are not counted as ICU deaths (reported as a footnote).
+  justification: >
+    SOFA-2 validation used ICU mortality (chosen for availability across registries; authors note ICU mortality
+    is strongly related to hospital mortality). Both are reported; hospital mortality is primary here.
+
+missing_data:
+  primary: normal-value imputation (missing component scored 0), as in SOFA-2 paper
+  sensitivity:
+    - complete-case (all six components observed)
+    - domain-available cohort
+  report: N available / N missing / % missing per domain, per score, per subgroup
+  note: SOFA-2 paper found much higher mortality in complete-case data (19.3% vs 9.5%); missingness may differ by subgroup.
+
+scores:
+  sofa1:
+    implementation: independent calculator from raw tables (src/03_sofa1.py)
+    thresholds_file: configs/sofa_mapping.csv
+    validation: cross-check against mimic-code sofa.sql on a random sample (differences explained, not forced to zero)
+    conventions: >
+      Follows mimic-code where Vincent 1996 is silent. Intubated patients (verbal text 'No Response-ETT') score GCS 15; GCS components carried forward up to 6 h, normal imputed.
+      Respiratory support = invasive ventilation only (procedure item 225792). PaO2/FiO2 uses arterial specimens only; FiO2 from the same blood gas, else the latest charted FiO2 within 4 h before.
+      Cardiovascular uses dopamine, dobutamine, epinephrine, norepinephrine only (not vasopressin or phenylephrine); infusion rows with Paused status ignored; infusion with implausible dose scores the minimum for that drug.
+      Urine output counts only if the ICU stay covers >= 22 h; scaled to 24 h. Missing component = 0 points; complete-case flag kept.
+    comparators: "Two SOFA-1 versions are CO-PRIMARY comparators, fixed before any outcome analysis: (a) community convention (intubated verbal = normal, GCS 15) and (b) as-charted (intubated verbal = 1). The choice changes the direction of the SOFA-1 to SOFA-2 shift in the outcome-blind audit (mean total 4.04 vs 5.04 for SOFA-1; 4.60 for SOFA-2)."
+    sensitivity_variants: [SOFA-1 with SOFA-2 brain rules to isolate the effect of intubation handling]
+  sofa2:
+    implementation: independent calculator from raw tables (src/04_sofa2.py); never derived by editing SOFA-1 code
+    thresholds_file: configs/sofa_mapping.csv
+    not_implementable_in_mimic: [ceiling-of-treatment rules]   # document, do not guess
+  validation_checks: [per-domain distributions, units, extreme values, timestamps, missingness, score range 0-24, manual review of random patients]
+  delta_definition: "deltaSOFA = SOFA-2 - SOFA-1 (descriptive only; not evidence of clinical superiority)"
+  benchmarks_from_sofa2_paper:
+    pooled_auroc_two_stage: {sofa2: 0.79, sofa1: 0.77}
+    pooled_auroc_single_stage: {sofa2: 0.81, sofa1: 0.80}
+    eicu_reclassification: {equal: 0.49, sofa2_lower: 0.40, sofa2_higher: 0.11}
+    note: sanity checks only; MIMIC need not match
+
+subgroups:
+  sex: {source: patients.gender, categories: [M, F], reference: M}
+  race_ethnicity:
+    source: admissions.race
+    mapping_file: configs/race_mapping.csv
+    primary_groups: [White, Black, Hispanic/Latino, Asian, Other]
+    excluded_from_race_comparisons: [Unknown/Declined]   # described and reported, never merged into Other
+    reference: White
+  insurance:
+    source: admissions.insurance
+    primary_groups: [Medicare, Medicaid, Private]
+    descriptive_only: [Other, No charge, Missing]
+    reference: Medicare   # largest group; Medicare is confounded with age >=65, so an age-restricted (<65) sensitivity analysis is prespecified
+  secondary: age categories / continuous age
+  gap_definition: "gap = AUROC(reference group) - AUROC(comparison group); also report all pairwise gaps"
+  delta_gap: "gap(SOFA-2) - gap(SOFA-1)"
+  min_group_size: "n >= 500 and >= 50 deaths for inclusion in primary subgroup AUROC (TODO_FREEZE confirm)"
+
+analysis:
+  primary_comparisons:
+    - overall AUROC SOFA-1, SOFA-2, paired deltaAUROC
+    - subgroup AUROC and paired deltaAUROC (sex, race/ethnicity, insurance)
+    - delta of subgroup gap (SOFA-2 gap minus SOFA-1 gap)
+  exploratory: everything else (clearly labelled; no headline p-values)
+  bootstrap:
+    type: paired, patient-cluster (subject_id) resampling; SOFA-1 and SOFA-2 retained together
+    replicates: 5000
+    seed: TODO_FREEZE
+    ci: percentile 95%
+    never: infer significance from overlap of separate CIs
+  crosscheck: paired DeLong test for overall deltaAUROC only
+  calibration:
+    approach: observed mortality by score value / score band for SOFA-1 and SOFA-2, overall and by subgroup
+    caution: SOFA is an ordinal score, not a fitted probability model; no model is fitted just to improve calibration statistics
+    prespecified_extra: TODO_FREEZE (e.g. logistic recalibration slope/intercept only if justified)
+  multiplicity: primary vs exploratory separation; report effect sizes with CIs
+
+sensitivity_analyses:
+  - ICU mortality outcome
+  - complete-case cohort
+  - domain-available cohort
+  - first stay per patient
+  - first-hour + 24-hour window variant (only if justified)
+  - broad sedation definition for the SOFA-2 brain domain (adds fentanyl infusions, intermittent sedative boluses, RASS <= -3)
+  - 6-hour lab/vital lookback window (src runs: lookback6)
+  - norepinephrine dose halved (salt to base), SOFA-2 variant ne_half
+  - SOFA-2 without the criteria-based RRT rule (sofa2_total_norrt_criteria)
+  - care-unit-stratified analysis, because ABG availability and score shifts differ by ICU type and by group
+
+robustness_checks:
+  - differences vs subgroup sample size
+  - differences vs mortality prevalence
+  - differences vs missingness
+  - differences driven by extreme scores
+  - identical patients and identical window for both scores (assert in code)
+
+reproducibility:
+  manifest: analysis_manifest.json (MIMIC version, dates, definitions, seeds, iterations, software versions, inclusion counts)
+  layout: src/01_cohort ... 09_sensitivity, configs/, outputs/{tables,figures,logs}
+  no_patient_level_data_in_repo: true
+
+operational_rules:
+  source: "Table 2 footnotes of Ranzani et al. (author-accepted manuscript); verify against published version and Supplement 2"
+  plausible_ranges: "Supplement 2 eTable 2 (values outside range treated as missing). TODO_FREEZE: obtain eTable 2; if unavailable, use documented conservative physiologic bounds and label them as ours"
+  brain:
+    sedated_gcs: "GCS charted during a continuous sedative infusion (propofol, midazolam, dexmedetomidine, lorazepam/ketamine infusions) is replaced by the last GCS before the infusion started; if none, 0 points (footnote a)"
+    unassessable_gcs: "Verbal text No Response-ETT (784,911 rows) means not assessable (intubated) and is distinct from true No Response (103,056). If any GCS component is not assessable, score from the motor component only (footnote b). Proposed mapping: motor 6 = 0 pts; 5 = 1; 4 = 2; 3 = 3; 2 or 1 = 4. TODO_FREEZE"
+    delirium_drugs: "1 point if an order for haloperidol (not decanoate), quetiapine, olanzapine, risperidone (not long-acting) or ziprasidone overlaps the window (prescriptions), or haloperidol is given in inputevents (footnote c). Excluded: aripiprazole, chlorpromazine, long-acting injectables. MIMIC does not record the indication, so chronic psychiatric use is a known misclassification source. Sensitivity: (a) exclude stays with a psychotic or bipolar disorder diagnosis, (b) add dexmedetomidine"
+  respiratory:
+    pf_source: "arterial PaO2 only (specimen type ART.), paired with FiO2 from the nearest preceding value; MIX./venous excluded (sensitivity: include MIX.)"
+    spo2_fallback: "only if PaO2/FiO2 unavailable and SpO2 < 98% (footnote d)"
+    ventilatory_support: "invasive ventilation (procedureevents 225792), NIV (225794, BiPAP/CPAP items), HFNO (226732 = High flow nasal cannula) (footnote e). High flow neb excluded (sensitivity: include). Support episodes < 1 h ignored"
+    cap_without_support: "without advanced support the respiratory score is capped at 2 (footnote f); ceiling-of-treatment exception not implementable"
+    ecmo: "ECMO for respiratory failure scores 4 respiratory only; ECMO for cardiovascular indication scores both (footnote g). Circuit configuration item 229268: VV (17,950 rows) = respiratory only; VA (9,926) and VAV (41) = both; unknown (---) = respiratory only"
+  cardiovascular:
+    infusion_rule: "continuous infusion >= 1 h only (footnote h); merge consecutive inputevents segments per stay and drug; Paused segments not counted as running (sensitivity: counted)"
+    norepinephrine_base: "MIMIC does not state base vs salt. Primary: as recorded. Sensitivity: multiply norepinephrine dose by 0.5 (footnote i, bitartrate monohydrate)"
+    dopamine: "dopamine alone: <=20 = 2 pts; >20-40 = 3; >40 = 4. Dopamine with any other agent counts as an other inotrope/vasopressor (footnote j)"
+    other_agents: [vasopressin, phenylephrine, dobutamine, milrinone, angiotensin II]
+    mechanical_support: "IABP, Impella, LVAD/RVAD, VA-ECMO (footnote l)"
+  kidney:
+    anuria_points: "Anuria (0 mL) for >= 12 h appears in the 4-point column in this manuscript version (v0.1 mapping had it under 3; corrected). VERIFY against published Table 2"
+    rrt: "hemodialysis, CRRT (procedureevents 225802 and chart CRRT mode 227290), peritoneal dialysis (primary: counted; sensitivity: excluded). Chronic dialysis scores 4 kidney points (Table 2, footnote o): ICD-10 N18.6 or Z99.2, ICD-9 585.6, V45.1, V45.11 or V45.12, or chart item 225126 = 1. Catheter-fitting and encounter codes excluded. RRT for non-renal indications cannot be identified in MIMIC (document)"
+    criteria_based: "Applied to all patients not receiving RRT: creatinine > 1.2 or UO < 0.3 mL/kg/h for > 6 h, plus potassium >= 6.0 or (pH <= 7.20 and bicarbonate <= 12) (footnote n). Sensitivity: not applied"
+    urine_output: "items per mimic_itemid_map_v0.2.csv; OR/PACU urine excluded (sensitivity: included)"
+    weight_fallback: "admission weight (kg) > daily weight > admission weight (lbs/2.2046) > inputevents patientweight; if none, per-kg urine output criteria unscored"
+  window_notes:
+    truncated_windows: "1,767 in-hospital deaths occur before the 24 h window ends and 18,004 stays last < 24 h; kept in the cohort (as in the SOFA-2 paper); sensitivity: restrict to stays >= 24 h"
+    repeat_hospitalizations: "19,874 analytic stays are not the patient's first; bootstrap resamples subject_id"
+
+
+secondary_analyses:
+  domain_decomposition: "Exploratory. For each SOFA-2 domain report its contribution to deltaAUROC and the by-group score shifts, to see which change drives any group difference (delirium-drug point, SpO2/FiO2 fallback, per-kg urine output, chronic RRT, vasopressor thresholds)"
+  spo2_fallback_by_race: "Exploratory. Compare respiratory scores derived from SpO2/FiO2 with those from PaO2/FiO2 by race; pulse oximetry bias is a documented concern"
+
+extraction:
+  script: src/02_extract.py
+  lab_lookback_hours: 6   # extraction only; primary scoring window stays strict
+  plausible_ranges: configs/plausible_ranges_INTERIM.yaml  # replaced by Supplement 2 eTable 2 when obtained
+
+audit_findings_outcome_blind:   # recorded before any mortality analysis
+  intubation: "36% of stays have intubated verbal text; 94% of SOFA-2 brain = 4 stays are intubated"
+  map: "MAP < 70 in about 77% of stays at every lower bound 10-50 mmHg, so the low-MAP floor is real (24 h minimum over a median of 25 readings), not a range artifact"
+  respiratory_funnel: "arterial PaO2 in 39% of stays; P/F computable in 82% of those (rest lack FiO2); SpO2/FiO2 fallback adds 9,942 stays"
+  group_differences: "ABG availability differs by sex, race and insurance (e.g. SOFA-1 respiratory observed: male 35.8%, female 27.6%; White 31.6%, Black 23.4%); Unknown/Declined race is sicker and better measured (mean SOFA-1 4.57 vs 3.96); mean SOFA-2 minus SOFA-1 differs by group"
+  consequence: "report missingness by group, stratify by care unit, keep Unknown/Declined out of race comparisons but describe it"
+
+freeze_checklist:
+  - SOFA-1 comparators confirmed with senior co-authors
+  - plausible ranges: Supplement 2 eTable 2 obtained, or interim ranges accepted as a stated limitation
+  - protocol_locked.yaml committed (git hash recorded) BEFORE running the outcome analysis (src/06)
