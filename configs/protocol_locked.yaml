@@ -127,9 +127,9 @@ sensitivity_analyses:
   - domain-available cohort
   - first stay per patient
   - first-hour + 24-hour window variant (only if justified)
-  - broad sedation definition for the SOFA-2 brain domain (adds fentanyl infusions, intermittent sedative boluses, RASS <= -3)
+  - narrow sedation definition for the SOFA-2 brain domain (continuous infusions of propofol, midazolam, dexmedetomidine, lorazepam or ketamine only; sofa2 tag: strict)
   - 6-hour lab/vital lookback window (src runs: lookback6)
-  - norepinephrine dose halved (salt to base), SOFA-2 variant ne_half
+  - norepinephrine dose halved (salt to base), SOFA-2 variant sed_broad+ne_half
   - SOFA-2 without the criteria-based RRT rule (sofa2_total_norrt_criteria)
   - care-unit-stratified analysis, because ABG availability and score shifts differ by ICU type and by group
 
@@ -149,7 +149,7 @@ operational_rules:
   source: "Table 2 footnotes of Ranzani et al. (author-accepted manuscript); verify against published version and Supplement 2"
   plausible_ranges: "Supplement 2 eTable 2 (values outside range treated as missing). TODO_FREEZE: obtain eTable 2; if unavailable, use documented conservative physiologic bounds and label them as ours"
   brain:
-    sedated_gcs: "GCS charted during a continuous sedative infusion (propofol, midazolam, dexmedetomidine, lorazepam/ketamine infusions) is replaced by the last GCS before the infusion started; if none, 0 points (footnote a)"
+    sedated_gcs: "PRIMARY (amended before outcomes, see amendments): a GCS reading is sedated if a continuous infusion of propofol, midazolam, dexmedetomidine, lorazepam, ketamine or fentanyl is running, a midazolam, lorazepam, fentanyl or ketamine bolus was given in the previous 2 h, or RASS <= -3 in the previous 4 h. A sedated reading is replaced by the last GCS before that sedation episode; if none, 0 points (footnote a). The 2 h and 4 h windows are our assumptions"
     unassessable_gcs: "Verbal text No Response-ETT (784,911 rows) means not assessable (intubated) and is distinct from true No Response (103,056). If any GCS component is not assessable, score from the motor component only (footnote b). Proposed mapping: motor 6 = 0 pts; 5 = 1; 4 = 2; 3 = 3; 2 or 1 = 4. TODO_FREEZE"
     delirium_drugs: "1 point if an order for haloperidol (not decanoate), quetiapine, olanzapine, risperidone (not long-acting) or ziprasidone overlaps the window (prescriptions), or haloperidol is given in inputevents (footnote c). Excluded: aripiprazole, chlorpromazine, long-acting injectables. MIMIC does not record the indication, so chronic psychiatric use is a known misclassification source. Sensitivity: (a) exclude stays with a psychotic or bipolar disorder diagnosis, (b) add dexmedetomidine"
   respiratory:
@@ -195,3 +195,10 @@ freeze_checklist:
   - SOFA-1 comparators confirmed with senior co-authors
   - plausible ranges: Supplement 2 eTable 2 obtained, or interim ranges accepted as a stated limitation
   - protocol_locked.yaml committed (git hash recorded) BEFORE running the outcome analysis (src/06)
+
+amendments:
+  - date: "2026-10-07"
+    made_before_any_mortality_analysis: true
+    prior_commit: "46ad3a6"
+    change: "Broad sedation definition promoted from sensitivity analysis to PRIMARY SOFA-2 brain rule; the infusion-only definition becomes a sensitivity analysis."
+    rationale: "Outcome-blind audit: 59% of SOFA-2 brain = 4 stays (7,971 -> 3,271) disappear when fentanyl infusions, sedative boluses and deep RASS count as sedation, and mean SOFA-2 brain points fall from 0.92 to 0.66. Table 2 footnote a applies to all sedated patients, so the infusion-only rule misclassified sedated patients as comatose."

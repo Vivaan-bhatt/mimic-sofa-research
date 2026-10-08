@@ -218,7 +218,7 @@ def main():
     a = ap.parse_args()
     if a.selftest:
         return selftest()
-    t2 = a.sofa2_tag or a.window
+    t2 = a.sofa2_tag or (a.window + "_sed_broad")      # headline SOFA-2 = broad sedation rule
     coh = pd.read_csv("outputs/tables/cohort_PRIVATE_do_not_share.csv").set_index("stay_id")
     f = lambda name: pd.read_csv(f"outputs/tables/{name}_PRIVATE.csv").set_index("stay_id")
     s1c, s1e, s2 = f(f"sofa1_{a.window}"), f(f"sofa1_{a.window}_ett_charted"), f(f"sofa2_{t2}")
@@ -231,7 +231,7 @@ def main():
         df = df[(s1c["complete_case"] & s1e["complete_case"] & s2["complete_case"]).reindex(df.index).fillna(False)]
     print(f"N stays = {len(df):,}; deaths ({a.outcome}) = {int(df.y.sum()):,}; window = {a.window}; sofa2 = {t2}/{a.sofa2_col}; B = {a.B}")
     res, bands, point = run(df.reset_index(drop=True), a.B, a.seed, a.outcome)
-    tag = f"{a.outcome}_{a.window}" + (f"_{t2}" if a.sofa2_tag else "") + ("_cc" if a.complete_case else "")
+    tag = f"{a.outcome}_{a.window}" + ("" if t2 == a.window + "_sed_broad" else f"_s2-{t2}") + ("" if a.sofa2_col == "sofa2_total" else f"_{a.sofa2_col}") + ("_cc" if a.complete_case else "")
     res.to_csv(f"outputs/tables/calib_results_{tag}.csv", index=False); bands.to_csv(f"outputs/tables/calib_bands_{tag}.csv", index=False)
     try:
         git = subprocess.check_output(["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL).decode().strip()

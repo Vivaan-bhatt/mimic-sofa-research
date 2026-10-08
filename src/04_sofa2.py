@@ -9,9 +9,9 @@ from common import *
 
 mode = sys.argv[1] if len(sys.argv) > 1 else "strict"
 variant = sys.argv[2] if len(sys.argv) > 2 else "primary"
-SED_BROAD = variant == "sed_broad"                     # sensitivity: broader sedation definition for the brain domain
-NE_FACTOR = 0.5 if variant == "ne_half" else 1.0       # sensitivity: norepinephrine salt -> base
-tag = mode + ("" if variant == "primary" else "_" + variant)
+SED_BROAD = "sed_broad" in variant.split("+")                     # sensitivity: broader sedation definition for the brain domain
+NE_FACTOR = 0.5 if "ne_half" in variant.split("+") else 1.0       # sensitivity: norepinephrine salt -> base
+tag = mode + ("" if variant == "primary" else "_" + variant.replace("+", "_"))
 
 coh = load_cohort()
 sidx = coh.set_index("stay_id")
