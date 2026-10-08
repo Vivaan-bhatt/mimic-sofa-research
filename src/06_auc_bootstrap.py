@@ -222,6 +222,8 @@ def main():
     ap.add_argument("--complete-case", action="store_true")
     ap.add_argument("--B", type=int, default=5000)
     ap.add_argument("--seed", type=int, default=20251007)
+    ap.add_argument("--age-lt", type=int, default=None, help="keep stays with age below N (prespecified insurance sensitivity)")
+    ap.add_argument("--careunit", default=None, help="keep stays whose first care unit contains this text, e.g. (MICU)")
     ap.add_argument("--selftest", action="store_true")
     a = ap.parse_args()
     if a.selftest:
@@ -233,15 +235,20 @@ def main():
     df = pd.DataFrame({"subject_id": coh["subject_id"], "y": coh[a.outcome].astype(int),
                        "sex": coh["gender"].map({"M": "Male", "F": "Female"}), "race": coh["race"].map(race_group),
                        "insurance": coh["insurance"].fillna("Other/Missing").where(coh["insurance"].isin(["Medicare", "Medicaid", "Private"]), "Other/Missing"),
-                       "sofa1_community": s1c["sofa1_total"], "sofa1_ett_charted": s1e["sofa1_total"], "sofa2": s2[a.sofa2_col]})
+                       "sofa1_community": s1c["sofa1_total"], "sofa1_ett_charted": s1e["sofa1_total"], "sofa2": s2[a.sofa2_col],
+                       "age": coh["age"], "careunit": coh["first_careunit"].fillna("Unknown")})
     assert df.notna().all().all(), "unexpected missing values"
+    if a.age_lt is not None:
+        df = df[df["age"] < a.age_lt]
+    if a.careunit:
+        df = df[df["careunit"].str.contains(a.careunit, case=False, regex=False)]
     if a.complete_case:
         cc = s1c["complete_case"] & s1e["complete_case"] & s2["complete_case"]
         df = df[cc.reindex(df.index).fillna(False)]
     print(f"N stays = {len(df):,}; subjects = {df.subject_id.nunique():,}; deaths ({a.outcome}) = {int(df.y.sum()):,}; "
           f"window = {a.window}; sofa2 = {t2}/{a.sofa2_col}; B = {a.B}; seed = {a.seed}")
     res = run_analysis(df.reset_index(drop=True), a.B, a.seed, a.outcome)
-    tag = f"{a.outcome}_{a.window}" + ("" if t2 == a.window + "_sed_broad" else f"_s2-{t2}") + ("" if a.sofa2_col == "sofa2_total" else f"_{a.sofa2_col}") + ("_cc" if a.complete_case else "")
+    tag = f"{a.outcome}_{a.window}" + ("" if t2 == a.window + "_sed_broad" else f"_s2-{t2}") + ("" if a.sofa2_col == "sofa2_total" else f"_{a.sofa2_col}") + (f"_age-lt{a.age_lt}" if a.age_lt is not None else "") + (("_cu-" + "".join(ch for ch in a.careunit if ch.isalnum())) if a.careunit else "") + ("_cc" if a.complete_case else "")
     res.to_csv(f"outputs/tables/auc_results_{tag}.csv", index=False)
     try:
         git = subprocess.check_output(["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL).decode().strip()
