@@ -1,7 +1,7 @@
 # 04_sofa2.py -- SOFA-2 (Ranzani et al., JAMA 2025, Table 2), built independently from raw extracts.
 # Same cleaned inputs, window and plausible ranges as SOFA-1 (common.py). Rules and operational choices
 # are listed in configs/analysis_protocol.yaml (operational_rules).
-# usage: python3 src/04_sofa2.py [strict|lookback6] [primary|ne_half]
+# usage: python3 src/04_sofa2.py [strict|lookback6] [primary|ne_half|sed_broad]
 import sys
 import numpy as np
 import pandas as pd
@@ -9,6 +9,7 @@ from common import *
 
 mode = sys.argv[1] if len(sys.argv) > 1 else "strict"
 variant = sys.argv[2] if len(sys.argv) > 2 else "primary"
+SED_BROAD = variant == "sed_broad"                     # sensitivity: broader sedation definition for the brain domain
 NE_FACTOR = 0.5 if variant == "ne_half" else 1.0       # sensitivity: norepinephrine salt -> base
 tag = mode + ("" if variant == "primary" else "_" + variant)
 
@@ -59,6 +60,15 @@ piv["pts"] = np.where(piv["verbal_f"] == 0, pts_motor, pts_total)               
 SED = [222168, 221668, 225150, 229420, 221385, 221712]
 sed = inp[inp["itemid"].isin(SED) & (inp["ordercategorydescription"] == "Continuous Med")
           & (inp["statusdescription"] != "Paused") & (inp["rate"] > 0)]
+sed = sed[["stay_id", "starttime", "endtime"]]
+if SED_BROAD:        # adds fentanyl infusions, sedative/opioid pushes (2 h), and RASS <= -3 (4 h)
+    cont = inp[inp["itemid"].isin([221744, 225942]) & (inp["ordercategorydescription"] == "Continuous Med")
+               & (inp["statusdescription"] != "Paused") & (inp["rate"] > 0)][["stay_id", "starttime", "endtime"]]
+    push = inp[inp["itemid"].isin([221668, 221385, 221744, 221712]) & (inp["ordercategorydescription"] == "Drug Push")][["stay_id", "starttime"]].copy()
+    push["endtime"] = push["starttime"] + pd.Timedelta(hours=2)
+    rass = chart[(chart["itemid"] == 228096) & (chart["valuenum"] <= -3)][["stay_id", "charttime"]].rename(columns={"charttime": "starttime"}).copy()
+    rass["endtime"] = rass["starttime"] + pd.Timedelta(hours=4)
+    sed = pd.concat([sed, cont, push, rass], ignore_index=True)
 if len(sed):
     u = add_union(sed[["stay_id", "starttime", "endtime"]], ["stay_id"])[["stay_id", "gs", "ge"]].drop_duplicates().sort_values("gs")
     piv = pd.merge_asof(piv.sort_values("charttime"), u, left_on="charttime", right_on="gs", by="stay_id", direction="backward")
