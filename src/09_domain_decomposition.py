@@ -12,11 +12,14 @@ spec = importlib.util.spec_from_file_location("auc06", os.path.join(here, "06_au
 A = importlib.util.module_from_spec(spec); spec.loader.exec_module(A)
 DOMS = [("brain", "cns_pts", "brain_pts"), ("respiratory", "resp_pts", "resp_pts"), ("cardiovascular", "cv_pts", "cv_pts"),
         ("liver", "liver_pts", "liver_pts"), ("kidney", "renal_pts", "renal_pts"), ("hemostasis", "coag_pts", "hemo_pts")]
+EXTRA = [("respiratory (P/F only)", "resp_pts", "resp_pf_only")]   # SOFA-2 respiratory WITHOUT the SpO2/FiO2 fallback
 
 def hybrid_scores(s1_by_comp, s2):
     out = {}
     for comp, s1 in s1_by_comp.items():
-        for name, d1, d2 in DOMS:
+        for name, d1, d2 in DOMS + EXTRA:
+            if d2 not in s2:
+                continue
             out[(comp, name)] = (s1["sofa1_total"] - s1[d1].fillna(0) + s2[d2].fillna(0)).astype(int)
     return out
 
@@ -37,8 +40,10 @@ def print_table(full, tot):
     for comp in A.COMPS:
         print(f"\nSOFA-1 comparator: {comp}   (all-domain SOFA-2 vs this comparator: overall dAUROC {tot[comp]})")
         print(f"  {'domain swapped':15s} {'overall dAUROC':26s} {'gap change: sex M-F':26s} {'White-Black':26s} {'Medicare-Private':26s}")
-        for name, _, _ in DOMS:
+        for name, _, _ in DOMS + EXTRA:
             g = full[(full.sofa1_comparator == comp) & (full.swapped_domain == name)]
+            if g.empty:
+                continue
             o = g[(g.family == "delta_auroc") & (g.partition == "overall")].iloc[0]
             def gap(p, lvl):
                 return show(g[(g.family == "delta_gap") & (g.partition == p) & (g.level == lvl)].iloc[0])
@@ -89,7 +94,9 @@ def main():
     assert df.notna().all().all()
     chk = (s1e["sofa1_total"] - s1e[[d[1] for d in DOMS]].fillna(0).sum(axis=1)).abs().max()
     assert chk == 0, "SOFA-1 domains must sum to the SOFA-1 total"
-    hyb = hybrid_scores({"sofa1_community": s1c, "sofa1_ett_charted": s1e}, s2.reindex(s1c.index))
+    s2x = s2.reindex(s1c.index).copy()
+    s2x["resp_pf_only"] = np.where(s2x["ecmo"], 4, s2x["resp_pf_pts"].fillna(0))
+    hyb = hybrid_scores({"sofa1_community": s1c, "sofa1_ett_charted": s1e}, s2x)
     full = decompose(df.reset_index(drop=True), {k: v.reindex(df.index) for k, v in hyb.items()}, a.B, a.seed, a.outcome)
     tag = f"{a.outcome}_{a.window}"
     full.to_csv(f"outputs/tables/domain_decomposition_{tag}.csv", index=False)
