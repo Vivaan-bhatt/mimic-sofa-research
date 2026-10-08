@@ -1,0 +1,152 @@
+dictionary,concept,itemid,label,linksto_or_fluid,category,unit
+d_items,vent_procedures,222871,Mallampati classification (Intubation),chartevents,Intubation,
+d_items,vent_procedures,223059,Intubation - Details,chartevents,Respiratory,
+d_items,vent_procedures,223837,ETT Size (ID),chartevents,Respiratory,
+d_items,vent_procedures,223838,ETT Location,chartevents,Respiratory,
+d_items,vent_procedures,223840,ETT Re-taped,chartevents,Respiratory,
+d_items,vent_procedures,224385,Intubation,procedureevents,1-Intubation/Extubation,
+d_items,vent_procedures,224391,ETT Mark (location),chartevents,Respiratory,
+d_items,vent_procedures,224392,ETT Position Change,chartevents,Respiratory,
+d_items,vent_procedures,224415,ETT Mark (cm),chartevents,Respiratory,
+d_items,vent_procedures,224832,ETT Type,chartevents,Respiratory,
+d_items,vent_procedures,225267,Difficult to Intubate,chartevents,Intubation,
+d_items,vent_procedures,225271,Induction/Drugs/Doses (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225277,ETT Position (cm at teeth),chartevents,Respiratory,
+d_items,vent_procedures,225278,ETT Route,chartevents,Respiratory,
+d_items,vent_procedures,225291,Indication (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225292,Unable to complete Airway Assessment (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225294,Mouth Opening (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225295,Thyromental Distance (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225296,Mandibular Prognatism (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225297,Teeth/Dentition (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225298,Neck ROM (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225300,No Drugs Administered (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225301,RSI (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225302,Pre-Oxygentated (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225303,Mask Ventilation (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225304,Blade / Equipment (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225306,Number of Attempts (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225307,Oral ETT,chartevents,Intubation,
+d_items,vent_procedures,225308,Nasal ETT,chartevents,Intubation,
+d_items,vent_procedures,225468,Unplanned Extubation (patient-initiated),procedureevents,1-Intubation/Extubation,
+d_items,vent_procedures,225477,Unplanned Extubation (non-patient initiated),procedureevents,1-Intubation/Extubation,
+d_items,vent_procedures,225585,ETT Depth (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225586,Stylette (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225587,Bougie (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225588,Tube Secured (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225590,Tracheal Confirmation (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225592,ETT Size (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225593,Best Larynx View Obtained (Intubation),chartevents,Intubation,
+d_items,vent_procedures,225792,Invasive Ventilation,procedureevents,2-Ventilation,
+d_items,vent_procedures,225794,Non-invasive Ventilation,procedureevents,2-Ventilation,
+d_items,vent_procedures,226166,No Complications (Intubation),chartevents,Intubation,
+d_items,vent_procedures,226188,Timeout Performed by (Intubation),chartevents,Intubation,
+d_items,vent_procedures,226189,Patient identified correctly by 2 means (Intubation),chartevents,Intubation,
+d_items,vent_procedures,226190,Hand Cleansing prior to procedure (Intubation),chartevents,Intubation,
+d_items,vent_procedures,226191,Barrier precautions in place (Intubation),chartevents,Intubation,
+d_items,vent_procedures,226429,ETT Type (Intubation),chartevents,Intubation,
+d_items,vent_procedures,226430,Complications (Intubation),chartevents,Intubation,
+d_items,vent_procedures,226431,Verification of (Intubation),chartevents,Intubation,
+d_items,vent_procedures,226432,Drugs (Intubation),chartevents,Intubation,
+d_items,vent_procedures,226814,Known difficult intubation,chartevents,Respiratory,
+d_items,vent_procedures,227021,Intubated_ApacheIV,chartevents,Scores - APACHE IV (2),
+d_items,vent_procedures,227194,Extubation,procedureevents,1-Intubation/Extubation,
+d_items,vent_procedures,227210,Propofol (Intubation),chartevents,Intubation,mg
+d_items,vent_procedures,227211,Ketamine (Intubation),chartevents,Intubation,mg
+d_items,vent_procedures,227212,Etomidate (Intubation),chartevents,Intubation,mg
+d_items,vent_procedures,227213,Vecuronium (Intubation),chartevents,Intubation,mg
+d_items,vent_procedures,227214,Cis-atracurium (Intubation),chartevents,Intubation,mg
+d_items,vent_procedures,227215,Succynlocholine (Intubation),chartevents,Intubation,mg
+d_items,vent_procedures,227809,ETT Position Change,chartevents,Respiratory,
+d_items,vent_procedures,227810,ETT Re-taped,chartevents,Respiratory,
+d_items,vent_procedures,228065,Hand Cleansing prior to procedure (Intubation),chartevents,Intubation,
+d_items,vent_procedures,228066,Unable to complete Airway Assessment (Intubation),chartevents,Intubation,
+d_items,vent_procedures,228067,Stylette (Intubation),chartevents,Intubation,
+d_items,vent_procedures,228068,Bougie (Intubation),chartevents,Intubation,
+d_items,vent_procedures,228069,Tube Secured (Intubation),chartevents,Intubation,
+d_items,vent_procedures,228070,The Attending/Supervisor is the Clinical Operator (Intubation),chartevents,Intubation,
+d_items,vent_procedures,228071,I was present during the above procedure and agree with the checklist (Intubation),chartevents,Intubation,
+d_items,vent_procedures,228112,GCSVerbalApacheIIValue (intubated),chartevents,Scores - APACHE II,
+d_items,vent_procedures,228643,Barrier precautions in place (Intubation),chartevents,Intubation,
+d_items,vent_procedures,229784,Code Status (Intubation),chartevents,Intubation,
+d_items,vent_procedures,229786,Preoxygenation (Intubation),chartevents,Intubation,
+d_items,vent_procedures,229787,Rigid Stylette (Intubation),chartevents,Intubation,
+d_items,vent_procedures,229788,Rocuronium (Intubation),chartevents,Intubation,mg
+d_items,vent_procedures,229789,Phenylephrine (Intubation),chartevents,Intubation,mcg
+d_items,map_other,224322,IABP Mean,chartevents,IABP,mmHg
+d_items,map_other,225309,ART BP Systolic,chartevents,Routine Vital Signs,mmHg
+d_items,map_other,225310,ART BP Diastolic,chartevents,Routine Vital Signs,mmHg
+d_items,map_other,225312,ART BP Mean,chartevents,Routine Vital Signs,mmHg
+d_items,map_other,227239,ABP Alarm Source,chartevents,Alarms,
+d_items,map_other,227240,NBP Alarm Source,chartevents,Alarms,
+d_items,sedation,221385,Lorazepam (Ativan),inputevents,Medications,mg
+d_items,sedation,221668,Midazolam (Versed),inputevents,Medications,mg
+d_items,sedation,221712,Ketamine,inputevents,Medications,mg
+d_items,sedation,221744,Fentanyl,inputevents,Medications,mg
+d_items,sedation,222168,Propofol,inputevents,Medications,mg
+d_items,sedation,224506,Conscious sedation (THCEN),chartevents,Thoracentesis,
+d_items,sedation,225150,Dexmedetomidine (Precedex),inputevents,Medications,mcg
+d_items,sedation,225531,Conscious sedation used (Bronch),chartevents,Bronchoscopy,
+d_items,sedation,225942,Fentanyl (Concentrate),inputevents,Medications,mg
+d_items,sedation,225972,Fentanyl (Push),inputevents,Medications,mcg
+d_items,sedation,226224,Propofol Ingredient,ingredientevents,Ingredients,mg
+d_items,sedation,227210,Propofol (Intubation),chartevents,Intubation,mg
+d_items,sedation,227211,Ketamine (Intubation),chartevents,Intubation,mg
+d_items,sedation,228060,Conscious sedation used (Bronch),chartevents,Bronchoscopy,
+d_items,sedation,228096,Richmond-RAS Scale,chartevents,Pain/Sedation,
+d_items,sedation,228299,Goal Richmond-RAS Scale,chartevents,Pain/Sedation,
+d_items,sedation,228302,CAM-ICU RASS LOC,chartevents,Pain/Sedation,
+d_items,sedation,228473,Conscious Sedation (Gen Proc),chartevents,Generic Proc Note,
+d_items,sedation,228710,Sedation goal,chartevents,MD Progress Note,
+d_items,sedation,229420,Dexmedetomidine (Precedex),inputevents,Medications,mcg
+d_items,sedation,230172,Patient Reversed,procedureevents,3-Significant Events,
+d_items,urine_output_all,226557,R Ureteral Stent,outputevents,Output,mL
+d_items,urine_output_all,226558,L Ureteral Stent,outputevents,Output,mL
+d_items,urine_output_all,226559,Foley,outputevents,Output,mL
+d_items,urine_output_all,226560,Void,outputevents,Output,mL
+d_items,urine_output_all,226563,Suprapubic,outputevents,Output,mL
+d_items,urine_output_all,226564,R Nephrostomy,outputevents,Output,mL
+d_items,urine_output_all,226565,L Nephrostomy,outputevents,Output,mL
+d_items,urine_output_all,226566,Urine and GU Irrigant Out,outputevents,Output,mL
+d_items,urine_output_all,226584,Ileoconduit,outputevents,Output,mL
+d_items,urine_output_all,226627,OR Urine,outputevents,Output,mL
+d_items,urine_output_all,226631,PACU Urine,outputevents,Output,mL
+d_items,urine_output_all,226713,Incontinent/voids (estimate),outputevents,Output,
+d_items,urine_output_all,227487,GU Irrigant Type,outputevents,Output,
+d_items,urine_output_all,227488,GU Irrigant Volume In,outputevents,Output,mL
+d_items,urine_output_all,227489,GU Irrigant/Urine Volume Out,outputevents,Output,mL
+d_labitems,lab_context,50813,Lactate,Blood,Blood Gas,
+d_labitems,lab_context,50816,Oxygen,Blood,Blood Gas,
+d_labitems,lab_context,50817,Oxygen Saturation,Blood,Blood Gas,
+d_labitems,lab_context,50843,"Lactate Dehydrogenase, Ascites",Ascites,Chemistry,
+d_labitems,lab_context,50954,Lactate Dehydrogenase (LD),Blood,Chemistry,
+d_labitems,lab_context,51054,"Lactate Dehydrogenase, Pleural",Pleural,Chemistry,
+d_labitems,lab_context,51513,Urine Specimen Type,Urine,Hematology,
+d_labitems,lab_context,51706,Problem Specimen,Blood,Chemistry,
+d_labitems,lab_context,51752,Voided Specimen,Blood,Chemistry,
+d_labitems,lab_context,51795,"Lactate Dehydrogenase, CSF",Cerebrospinal Fluid,Chemistry,
+d_labitems,lab_context,51806,Voided Specimen,Cerebrospinal Fluid,Chemistry,
+d_labitems,lab_context,51827,Voided Specimen,Joint Fluid,Chemistry,
+d_labitems,lab_context,51828,Voided Specimen,Bone Marrow,Chemistry,
+d_labitems,lab_context,51901,Voided Specimen,Other Body Fluid,Chemistry,
+d_labitems,lab_context,51924,Voided Specimen,Pleural,Chemistry,
+d_labitems,lab_context,51944,"Lactate Dehydrogenase, Stool",Stool,Chemistry,
+d_labitems,lab_context,51953,Voided Specimen,Stool,Chemistry,
+d_labitems,lab_context,52014,Voided Specimen,Urine,Chemistry,
+d_labitems,lab_context,52033,Specimen Type,Blood,Blood Gas,
+d_labitems,lab_context,52036,Voided Specimen,Blood,Blood Gas,
+d_labitems,lab_context,52043,Voided Specimen,Other Body Fluid,Blood Gas,
+d_labitems,lab_context,52066,Voided Specimen,Ascites,Hematology,
+d_labitems,lab_context,52161,Problem Specimen,Blood,Hematology,
+d_labitems,lab_context,52195,Voided Specimen,Blood,Hematology,
+d_labitems,lab_context,52287,Voided Specimen,Cerebrospinal Fluid,Hematology,
+d_labitems,lab_context,52313,Voided Specimen,Joint Fluid,Hematology,
+d_labitems,lab_context,52334,Voided Specimen,Bone Marrow,Hematology,
+d_labitems,lab_context,52370,Voided Specimen,Other Body Fluid,Hematology,
+d_labitems,lab_context,52392,Voided Specimen,Pleural,Hematology,
+d_labitems,lab_context,52406,Voided Specimen,Stool,Hematology,
+d_labitems,lab_context,52418,Problem Specimen,Urine,Hematology,
+d_labitems,lab_context,52419,Voided Specimen,Urine,Hematology,
+d_labitems,lab_context,52442,Lactate,Blood,Blood Gas,
+d_labitems,lab_context,53127,Voided Specimen,Ascites,Chemistry,
+d_labitems,lab_context,53154,Lactate,Blood,Chemistry,

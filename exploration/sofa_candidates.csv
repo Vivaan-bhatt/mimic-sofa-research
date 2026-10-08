@@ -1,0 +1,307 @@
+dictionary,concept,itemid,label,linksto_or_fluid,category,unit
+d_items,gcs,220739,GCS - Eye Opening,chartevents,Neurological,
+d_items,gcs,223900,GCS - Verbal Response,chartevents,Neurological,
+d_items,gcs,223901,GCS - Motor Response,chartevents,Neurological,
+d_items,gcs,226755,GcsApacheIIScore,chartevents,Scores - APACHE II,
+d_items,gcs,226756,GCSEyeApacheIIValue,chartevents,Scores - APACHE II,
+d_items,gcs,226757,GCSMotorApacheIIValue,chartevents,Scores - APACHE II,
+d_items,gcs,226758,GCSVerbalApacheIIValue,chartevents,Scores - APACHE II,
+d_items,gcs,227011,GCSEye_ApacheIV,chartevents,Scores - APACHE IV (2),
+d_items,gcs,227012,GCSMotor_ApacheIV,chartevents,Scores - APACHE IV (2),
+d_items,gcs,227013,GcsScore_ApacheIV,chartevents,Scores - APACHE IV (2),
+d_items,gcs,227014,GCSVerbal_ApacheIV,chartevents,Scores - APACHE IV (2),
+d_items,gcs,228112,GCSVerbalApacheIIValue (intubated),chartevents,Scores - APACHE II,
+d_items,fio2_oxygen,223835,Inspired O2 Fraction,chartevents,Respiratory,
+d_items,fio2_oxygen,226754,FiO2ApacheIIValue,chartevents,Scores - APACHE II,%
+d_items,fio2_oxygen,227009,FiO2_ApacheIV_old,chartevents,Scores - APACHE IV (2),
+d_items,fio2_oxygen,227010,FiO2_ApacheIV,chartevents,Scores - APACHE IV (2),%
+d_items,fio2_oxygen,229238,FiO2 Challenge,chartevents,Hemodynamics,
+d_items,fio2_oxygen,229239,FiO2 Challenge Result,chartevents,Hemodynamics,
+d_items,fio2_oxygen,229280,FiO2 (ECMO),chartevents,ECMO,%
+d_items,fio2_oxygen,229841,FiO2 (CH),chartevents,ECMO,%
+d_items,spo2,220277,O2 saturation pulseoxymetry,chartevents,Respiratory,%
+d_items,spo2,223769,O2 Saturation Pulseoxymetry Alarm - High,chartevents,Alarms,%
+d_items,spo2,223770,O2 Saturation Pulseoxymetry Alarm - Low,chartevents,Alarms,%
+d_items,spo2,226253,SpO2 Desat Limit,chartevents,Alarms,%
+d_items,spo2,229862,Forehead SpO2 Sensor in Place,chartevents,Routine Vital Signs,
+d_items,map_bp,220052,Arterial Blood Pressure mean,chartevents,Routine Vital Signs,mmHg
+d_items,map_bp,220181,Non Invasive Blood Pressure mean,chartevents,Routine Vital Signs,mmHg
+d_items,map_bp,224322,IABP Mean,chartevents,IABP,mmHg
+d_items,resp_support,223848,Ventilator Type,chartevents,Respiratory,
+d_items,resp_support,223849,Ventilator Mode,chartevents,Respiratory,
+d_items,resp_support,225448,Percutaneous Tracheostomy,procedureevents,1-Intubation/Extubation,
+d_items,resp_support,225949,NIV Mask,chartevents,Respiratory,
+d_items,resp_support,226237,Open Tracheostomy,procedureevents,1-Intubation/Extubation,
+d_items,resp_support,226732,O2 Delivery Device(s),chartevents,Respiratory,
+d_items,resp_support,227565,Ventilator Tank #1,chartevents,Respiratory,
+d_items,resp_support,227566,Ventilator Tank #2,chartevents,Respiratory,
+d_items,resp_support,227577,BiPap Mode,chartevents,Respiratory,
+d_items,resp_support,227578,BiPap Mask,chartevents,Respiratory,
+d_items,resp_support,227579,BiPap EPAP,chartevents,Respiratory,cmH2O
+d_items,resp_support,227580,BiPap IPAP,chartevents,Respiratory,cmH2O
+d_items,resp_support,227581,BiPap bpm (S/T -Back up),chartevents,Respiratory,bpm
+d_items,resp_support,227582,BiPap O2 Flow,chartevents,Respiratory,L/min
+d_items,resp_support,227583,Autoset/CPAP,chartevents,Respiratory,
+d_items,resp_support,229314,Ventilator Mode (Hamilton),chartevents,Respiratory,
+d_items,resp_support,230045,Intellivent (Hamilton Vent Mode),chartevents,Respiratory,
+d_items,vasoactive,221289,Epinephrine,inputevents,Medications,mg
+d_items,vasoactive,221653,Dobutamine,inputevents,Medications,mg
+d_items,vasoactive,221662,Dopamine,inputevents,Medications,mg
+d_items,vasoactive,221749,Phenylephrine,inputevents,Medications,mg
+d_items,vasoactive,221906,Norepinephrine,inputevents,Medications,mg
+d_items,vasoactive,221986,Milrinone,inputevents,Medications,mg
+d_items,vasoactive,222315,Vasopressin,inputevents,Medications,units
+d_items,vasoactive,229617,Epinephrine.,inputevents,Medications,mg
+d_items,vasoactive,229630,Phenylephrine (50/250),inputevents,Medications,mg
+d_items,vasoactive,229631,Phenylephrine (200/250)_OLD_1,inputevents,Medications,mg
+d_items,vasoactive,229632,Phenylephrine (200/250),inputevents,Medications,mg
+d_items,vasoactive,229709,Angiotensin II (Giapreza),inputevents,Medications,mg
+d_items,vasoactive,229764,Angiotensin II (Giapreza),inputevents,Medications,ng
+d_items,vasoactive,229789,Phenylephrine (Intubation),chartevents,Intubation,mcg
+d_items,mech_support_ecmo,220125,Left Ventricular Assit Device Flow,chartevents,Hemodynamics,L/min
+d_items,mech_support_ecmo,220128,Right Ventricular Assist Device Flow,chartevents,Hemodynamics,L/min
+d_items,mech_support_ecmo,224272,IABP line,procedureevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,224314,ABI Brachial BP R (Impella),chartevents,Impella,mmHg
+d_items,mech_support_ecmo,224318,ABI Ankle BP L (Impella),chartevents,Impella,mmHg
+d_items,mech_support_ecmo,224322,IABP Mean,chartevents,IABP,mmHg
+d_items,mech_support_ecmo,224660,ECMO,chartevents,Hemodynamics,L/min
+d_items,mech_support_ecmo,225335,IABP Cap Change,datetimeevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225336,IABP Change over Wire Date,datetimeevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225337,IABP Dressing Change,datetimeevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225338,IABP Insertion Date,datetimeevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225339,IABP Site Appear,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225340,IABP Tubing Change,datetimeevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225341,IABP Art. Waveform Appear,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225342,IABP Zero/Calibrate,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225727,IABP Line Tip Cultured,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225742,IABP Line Discontinued,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225778,IABP Dressing Type,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225979,IABP Size,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225980,IABP Volume,chartevents,Access Lines - Invasive,mL
+d_items,mech_support_ecmo,225981,IABP Alarms Activated,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225982,IABP Balloon Waveform,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225984,IABP Trigger,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225985,IABP Helium Tubing,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225986,IABP Arterial Waveform Source,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225987,IABP Power Source,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,225988,IABP Position on leg,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,226110,IABP placed in outside facility,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,227355,IABP Dressing Occlusive,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,227754,IABP Placement Confirmed by X-ray,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,227980,Intra Aortic Balloon Pump Setting,chartevents,IABP,
+d_items,mech_support_ecmo,228148,ABI Ankle BP R (Impella),chartevents,Impella,mmHg
+d_items,mech_support_ecmo,228149,ABI Brachial BP L (Impella),chartevents,Impella,mmHg
+d_items,mech_support_ecmo,228154,Flow Rate (Impella),chartevents,Impella,L/min
+d_items,mech_support_ecmo,228160,Impella Aortic Pressure Tubing Change,datetimeevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,228162,Impella Catheter Position,chartevents,Access Lines - Invasive,cm
+d_items,mech_support_ecmo,228163,Impella Catheter Repositioned,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,228164,Impella Catheter Site,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,228165,Impella Daily Tubing Change,datetimeevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,228166,Impella Dressing Change,datetimeevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,228167,Impella Dressing Occlusive,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,228168,Impella Insertion Date,datetimeevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,228169,Impella Line,procedureevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,228170,Impella Line Discontinued,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,228171,Impella Placement Confirmed,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,228172,Impella Postion Confirmed,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,228173,Impella Position,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,228174,Impella Line Site Appear,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,228193,Oxygenator/ECMO,chartevents,Tandem Heart,
+d_items,mech_support_ecmo,228866,Plateau Pressure (IABP),chartevents,IABP,mmHg
+d_items,mech_support_ecmo,229250,Cannula sites visually inspected (LVAD),chartevents,Centrimag,
+d_items,mech_support_ecmo,229252,Emergency Equipment at bedside (LVAD),chartevents,Centrimag,
+d_items,mech_support_ecmo,229254,Flow (LVAD),chartevents,Centrimag,L/min
+d_items,mech_support_ecmo,229256,Flow Alarm (Hi) (LVAD),chartevents,Centrimag,
+d_items,mech_support_ecmo,229258,Flow Alarm (Lo) (LVAD),chartevents,Centrimag,
+d_items,mech_support_ecmo,229260,Flow Sensor repositioned (LVAD),chartevents,Centrimag,
+d_items,mech_support_ecmo,229262,Speed (LVAD),chartevents,Centrimag,RPM
+d_items,mech_support_ecmo,229264,Suction events (LVAD),chartevents,Centrimag,
+d_items,mech_support_ecmo,229266,Cannula sites visually inspected (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,229267,Emergency Equipment at bedside (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,229268,Circuit Configuration (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,229269,Circuit inspected for clot (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,229270,Flow (ECMO),chartevents,ECMO,L/min
+d_items,mech_support_ecmo,229271,Flow Alarm (Hi) (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,229272,Flow Alarm (Lo) (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,229273,Flow Sensor repositioned (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,229274,Oxygenator visible (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,229275,Pump plugged into RED outlet (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,229276,Suction events (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,229277,Speed (ECMO),chartevents,ECMO,RPM
+d_items,mech_support_ecmo,229278,Sweep (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,229280,FiO2 (ECMO),chartevents,ECMO,%
+d_items,mech_support_ecmo,229363,P1 (ECMO),chartevents,ECMO,mmHg
+d_items,mech_support_ecmo,229364,P2 (ECMO),chartevents,ECMO,mmHg
+d_items,mech_support_ecmo,229365,P1 - P2 (ECMO),chartevents,ECMO,mmHg
+d_items,mech_support_ecmo,229529,ECMO Inflow Line,procedureevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,229530,ECMO Outflow Line,procedureevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,229597,Heparin Sodium (Impella),inputevents,Medications,units
+d_items,mech_support_ecmo,229671,Flow Rate (Impella) (R),chartevents,Impella,L/min
+d_items,mech_support_ecmo,229679,Type of Catheter (Impella),chartevents,Impella,
+d_items,mech_support_ecmo,229680,Impella Line Type,chartevents,Access Lines - Invasive,
+d_items,mech_support_ecmo,229781,Bivalirudin (Angiomax) (Impella),inputevents,Medications,mg
+d_items,mech_support_ecmo,229897,Cardiac Output (CO) (Impella),chartevents,Impella,L/min
+d_items,mech_support_ecmo,229898,LVEDP (Impella),chartevents,Impella,mmHg
+d_items,mech_support_ecmo,230159,Oxymetry location (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,230161,StO2 R (ECMO),chartevents,ECMO,%
+d_items,mech_support_ecmo,230164,StO2 L (ECMO),chartevents,ECMO,%
+d_items,mech_support_ecmo,230168,Delta P (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,230169,Delta P Alarm (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,230170,Part Alarm (Hi) (ECMO),chartevents,ECMO,
+d_items,mech_support_ecmo,230171,Pint Alarm (Hi) (ECMO),chartevents,ECMO,
+d_items,rrt,224135,Dialysis Access Site,chartevents,Dialysis,
+d_items,rrt,224139,Dialysis Site Appearance,chartevents,Dialysis,
+d_items,rrt,224270,Dialysis Catheter,procedureevents,Access Lines - Invasive,
+d_items,rrt,225126,Dialysis patient,chartevents,Adm History/FHPA,
+d_items,rrt,225128,Last dialysis,datetimeevents,Adm History/FHPA,
+d_items,rrt,225318,Dialysis Catheter Cap Change,datetimeevents,Access Lines - Invasive,
+d_items,rrt,225319,Dialysis Catheter Change over Wire Date,datetimeevents,Access Lines - Invasive,
+d_items,rrt,225321,Dialysis Catheter Dressing Change,datetimeevents,Access Lines - Invasive,
+d_items,rrt,225322,Dialysis Catheter Insertion Date,datetimeevents,Access Lines - Invasive,
+d_items,rrt,225323,Dialysis Catheter Site Appear,chartevents,Access Lines - Invasive,
+d_items,rrt,225324,Dialysis CatheterTubing Change,datetimeevents,Access Lines - Invasive,
+d_items,rrt,225436,CRRT Filter Change,procedureevents,Dialysis,
+d_items,rrt,225441,Hemodialysis,procedureevents,4-Procedures,
+d_items,rrt,225725,Dialysis Catheter Tip Cultured,chartevents,Access Lines - Invasive,
+d_items,rrt,225740,Dialysis Catheter Discontinued,chartevents,Access Lines - Invasive,
+d_items,rrt,225776,Dialysis Catheter Dressing Type,chartevents,Access Lines - Invasive,
+d_items,rrt,225802,Dialysis - CRRT,procedureevents,Dialysis,
+d_items,rrt,225803,Dialysis - CVVHD,procedureevents,Dialysis,
+d_items,rrt,225805,Peritoneal Dialysis,procedureevents,Dialysis,
+d_items,rrt,225809,Dialysis - CVVHDF,procedureevents,Dialysis,
+d_items,rrt,225810,Dwell Time (Peritoneal Dialysis),chartevents,Dialysis,hour
+d_items,rrt,225951,Peritoneal Dialysis Fluid Appearance,chartevents,Dialysis,
+d_items,rrt,225952,Medication Added #1 (Peritoneal Dialysis),chartevents,Dialysis,
+d_items,rrt,225953,Solution (Peritoneal Dialysis),chartevents,Dialysis,
+d_items,rrt,225954,Dialysis Access Type,chartevents,Dialysis,
+d_items,rrt,225955,Dialysis - SCUF,procedureevents,Dialysis,
+d_items,rrt,225956,Reason for CRRT Filter Change,chartevents,Dialysis,
+d_items,rrt,225959,Medication Added Amount  #1 (Peritoneal Dialysis),chartevents,Dialysis,
+d_items,rrt,225961,Medication Added Units #1 (Peritoneal Dialysis),chartevents,Dialysis,
+d_items,rrt,225963,Peritoneal Dialysis Catheter Type,chartevents,Dialysis,
+d_items,rrt,225965,Peritoneal Dialysis Catheter Status,chartevents,Dialysis,
+d_items,rrt,226118,Dialysis Catheter placed in outside facility,chartevents,Access Lines - Invasive,
+d_items,rrt,226499,Hemodialysis Output,chartevents,Dialysis,mL
+d_items,rrt,227124,Dialysis Catheter Type,chartevents,Access Lines - Invasive,
+d_items,rrt,227290,CRRT mode,chartevents,Dialysis,
+d_items,rrt,227357,Dialysis Catheter Dressing Occlusive,chartevents,Access Lines - Invasive,
+d_items,rrt,227525,Calcium Gluconate (CRRT),inputevents,Medications,grams
+d_items,rrt,227536,KCl (CRRT),inputevents,Medications,mEq.
+d_items,rrt,227638,Medication Added #2 (Peritoneal Dialysis),chartevents,Dialysis,
+d_items,rrt,227639,Medication Added Amount  #2 (Peritoneal Dialysis),chartevents,Dialysis,
+d_items,rrt,227640,Medication Added Units #2 (Peritoneal Dialysis),chartevents,Dialysis,
+d_items,rrt,227753,Dialysis Catheter Placement Confirmed by X-ray,chartevents,Access Lines - Invasive,
+d_items,rrt,229536,Dialysis Catheter Type,chartevents,Access Lines - Invasive,
+d_items,rrt,229881,Dialysis/Pheresis Biopatch,chartevents,Access Lines - Invasive,
+d_items,rrt,230044,Heparin Sodium (CRRT-Prefilter),inputevents,Medications,units
+d_items,rrt,230177,CRRT - Filter Type,chartevents,Dialysis,
+d_items,weight,224639,Daily Weight,chartevents,General,kg
+d_items,weight,225124,Unintentional weight loss >10 lbs.,chartevents,Adm History/FHPA,
+d_items,weight,226512,Admission Weight (Kg),chartevents,General,kg
+d_items,weight,226531,Admission Weight (lbs.),chartevents,General,
+d_items,weight,226740,APACHE II Diagnosistic weight factors - Medical,chartevents,Scores - APACHE II,
+d_items,weight,226741,APACHE II Diagnosistic weight factors - Surgical emergency,chartevents,Scores - APACHE II,
+d_items,weight,226742,APACHE II Diagnosistic weight factors - Surgical,chartevents,Scores - APACHE II,
+d_items,weight,226846,Feeding Weight,chartevents,General,kg
+d_items,weight,227854,Weight Bearing Status,chartevents,OT Notes,
+d_items,delirium_related,221824,Haloperidol (Haldol),inputevents,Medications,mg
+d_items,delirium_related,228300,CAM-ICU MS change,chartevents,Pain/Sedation,
+d_items,delirium_related,228301,CAM-ICU Inattention,chartevents,Pain/Sedation,
+d_items,delirium_related,228302,CAM-ICU RASS LOC,chartevents,Pain/Sedation,
+d_items,delirium_related,228303,CAM-ICU Disorganized thinking,chartevents,Pain/Sedation,
+d_items,delirium_related,228332,Delirium assessment,chartevents,Pain/Sedation,
+d_items,delirium_related,228334,CAM-ICU Altered LOC,chartevents,Pain/Sedation,
+d_items,delirium_related,228335,CAM-ICU Disorganized thinking,chartevents,Pain/Sedation,
+d_items,delirium_related,228336,CAM-ICU Inattention,chartevents,Pain/Sedation,
+d_items,delirium_related,228337,CAM-ICU MS Change,chartevents,Pain/Sedation,
+d_items,delirium_related,228688,Delirium,chartevents,MD Progress Note,
+d_items,delirium_related,229324,CAM-ICU Disorganized thinking,chartevents,Pain/Sedation,
+d_items,delirium_related,229325,CAM-ICU Inattention,chartevents,Pain/Sedation,
+d_items,delirium_related,229326,CAM-ICU MS Change,chartevents,Pain/Sedation,
+d_items,urine_output,226559,Foley,outputevents,Output,mL
+d_items,urine_output,226560,Void,outputevents,Output,mL
+d_items,urine_output,226561,Condom Cath,outputevents,Output,mL
+d_items,urine_output,226564,R Nephrostomy,outputevents,Output,mL
+d_items,urine_output,226565,L Nephrostomy,outputevents,Output,mL
+d_items,urine_output,226566,Urine and GU Irrigant Out,outputevents,Output,mL
+d_items,urine_output,226627,OR Urine,outputevents,Output,mL
+d_items,urine_output,226631,PACU Urine,outputevents,Output,mL
+d_items,urine_output,226713,Incontinent/voids (estimate),outputevents,Output,
+d_items,urine_output,227489,GU Irrigant/Urine Volume Out,outputevents,Output,mL
+d_labitems,bilirubin,50838,"Bilirubin, Total, Ascites",Ascites,Chemistry,
+d_labitems,bilirubin,50883,"Bilirubin, Direct",Blood,Chemistry,
+d_labitems,bilirubin,50884,"Bilirubin, Indirect",Blood,Chemistry,
+d_labitems,bilirubin,50885,"Bilirubin, Total",Blood,Chemistry,
+d_labitems,bilirubin,51028,"Bilirubin, Total, Body Fluid",Other Body Fluid,Chemistry,
+d_labitems,bilirubin,51049,"Bilirubin, Total, Pleural",Pleural,Chemistry,
+d_labitems,bilirubin,51464,Bilirubin,Urine,Hematology,
+d_labitems,bilirubin,51465,Bilirubin Crystals,Urine,Hematology,
+d_labitems,bilirubin,51568,"Bilirubin, Neonatal",Blood,Chemistry,
+d_labitems,bilirubin,51569,"Bilirubin, Neonatal, Direct",Blood,Chemistry,
+d_labitems,bilirubin,51570,"Bilirubin, Neonatal, Indirect",Blood,Chemistry,
+d_labitems,bilirubin,51783,"Bilirubin, Total, CSF",Cerebrospinal Fluid,Chemistry,
+d_labitems,bilirubin,51812,"Bilirubin, Total, Joint Fluid",Joint Fluid,Chemistry,
+d_labitems,bilirubin,51932,"Bilirubin, Total, Stool",Stool,Chemistry,
+d_labitems,bilirubin,51966,Bilirubin,Urine,Chemistry,
+d_labitems,bilirubin,53089,"Bilirubin, Total",Blood,Chemistry,
+d_labitems,creatinine,50841,"Creatinine, Ascites",Ascites,Chemistry,
+d_labitems,creatinine,50912,Creatinine,Blood,Chemistry,
+d_labitems,creatinine,51021,"Creatinine, Joint Fluid",Joint Fluid,Chemistry,
+d_labitems,creatinine,51032,"Creatinine, Body Fluid",Other Body Fluid,Chemistry,
+d_labitems,creatinine,51052,"Creatinine, Pleural",Pleural,Chemistry,
+d_labitems,creatinine,51067,24 hr Creatinine,Urine,Chemistry,
+d_labitems,creatinine,51070,"Albumin/Creatinine, Urine",Urine,Chemistry,
+d_labitems,creatinine,51073,"Amylase/Creatinine Ratio, Urine",Urine,Chemistry,
+d_labitems,creatinine,51080,Creatinine Clearance,Urine,Chemistry,
+d_labitems,creatinine,51081,"Creatinine, Serum",Urine,Chemistry,
+d_labitems,creatinine,51082,"Creatinine, Urine",Urine,Chemistry,
+d_labitems,creatinine,51099,Protein/Creatinine Ratio,Urine,Chemistry,
+d_labitems,creatinine,51106,Urine Creatinine,Urine,Chemistry,
+d_labitems,creatinine,51787,"Creatinine, CSF",Cerebrospinal Fluid,Chemistry,
+d_labitems,creatinine,51937,"Creatinine, Stool",Stool,Chemistry,
+d_labitems,creatinine,51963,Amylase/Creatinine Clearance,Urine,Chemistry,
+d_labitems,creatinine,51977,"Creatinine, Blood",Urine,Chemistry,
+d_labitems,creatinine,52000,Urine  Creatinine,Urine,Chemistry,
+d_labitems,creatinine,52024,"Creatinine, Whole Blood",Blood,Blood Gas,
+d_labitems,creatinine,52546,Creatinine,Blood,Chemistry,
+d_labitems,platelets,51240,Large Platelets,Blood,Hematology,
+d_labitems,platelets,51264,Platelet Clumps,Blood,Hematology,
+d_labitems,platelets,51265,Platelet Count,Blood,Hematology,
+d_labitems,platelets,51266,Platelet Smear,Blood,Hematology,
+d_labitems,platelets,52105,Direct Antiplatelet Antibodies,Blood,Hematology,
+d_labitems,platelets,52142,Mean Platelet Volume,Blood,Hematology,
+d_labitems,platelets,52159,Platelet Aggregation,Blood,Hematology,
+d_labitems,platelets,53189,Platelet Count,Blood,Chemistry,
+d_labitems,potassium,50822,"Potassium, Whole Blood",Blood,Blood Gas,
+d_labitems,potassium,50833,Potassium,Other Body Fluid,Blood Gas,
+d_labitems,potassium,50847,"Potassium, Ascites",Ascites,Chemistry,
+d_labitems,potassium,50971,Potassium,Blood,Chemistry,
+d_labitems,potassium,51041,"Potassium, Body Fluid",Other Body Fluid,Chemistry,
+d_labitems,potassium,51057,"Potassium, Pleural",Pleural,Chemistry,
+d_labitems,potassium,51064,"Potassium, Stool",Stool,Chemistry,
+d_labitems,potassium,51097,"Potassium, Urine",Urine,Chemistry,
+d_labitems,potassium,51800,"Potassium, CSF",Cerebrospinal Fluid,Chemistry,
+d_labitems,potassium,51822,"Potassium, Joint Fluid",Joint Fluid,Chemistry,
+d_labitems,potassium,52046,"Potassium, Urine",Urine,Blood Gas,
+d_labitems,potassium,52452,"Potassium, Whole Blood",Blood,Blood Gas,
+d_labitems,potassium,52610,Potassium,Blood,Chemistry,
+d_labitems,ph,50820,pH,Blood,Blood Gas,
+d_labitems,ph,50831,pH,Other Body Fluid,Blood Gas,
+d_labitems,ph,51094,pH,Urine,Chemistry,
+d_labitems,ph,51491,pH,Urine,Hematology,
+d_labitems,ph,52041,pH,Fluid,Blood Gas,
+d_labitems,ph,52730,pH,Urine,Chemistry,
+d_labitems,bicarbonate,50803,"Calculated Bicarbonate, Whole Blood",Blood,Blood Gas,
+d_labitems,bicarbonate,50837,"Bicarbonate, Ascites",Ascites,Chemistry,
+d_labitems,bicarbonate,50882,Bicarbonate,Blood,Chemistry,
+d_labitems,bicarbonate,51027,"Bicarbonate, Other Fluid",Other Body Fluid,Chemistry,
+d_labitems,bicarbonate,51048,"Bicarbonate, Pleural",Pleural,Chemistry,
+d_labitems,bicarbonate,51061,"Bicarbonate, Stool",Stool,Chemistry,
+d_labitems,bicarbonate,51076,"Bicarbonate, Urine",Urine,Chemistry,
+d_labitems,bicarbonate,51782,"Bicarbonate, CSF",Cerebrospinal Fluid,Chemistry,
+d_labitems,bicarbonate,51811,"Bicarbonate,Joint Fluid",Joint Fluid,Chemistry,
+d_labitems,bicarbonate,52039,Calculated Bicarbonate,Fluid,Blood Gas,
+d_labitems,po2_pao2,50821,pO2,Blood,Blood Gas,
+d_labitems,po2_pao2,52042,pO2,Fluid,Blood Gas,
+d_labitems,oxygen_other,50816,Oxygen,Blood,Blood Gas,
+d_labitems,oxygen_other,50817,Oxygen Saturation,Blood,Blood Gas,
