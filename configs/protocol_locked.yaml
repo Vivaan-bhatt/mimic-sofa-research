@@ -202,3 +202,15 @@ amendments:
     prior_commit: "46ad3a6"
     change: "Broad sedation definition promoted from sensitivity analysis to PRIMARY SOFA-2 brain rule; the infusion-only definition becomes a sensitivity analysis."
     rationale: "Outcome-blind audit: 59% of SOFA-2 brain = 4 stays (7,971 -> 3,271) disappear when fentanyl infusions, sedative boluses and deep RASS count as sedation, and mean SOFA-2 brain points fall from 0.92 to 0.66. Table 2 footnote a applies to all sedated patients, so the infusion-only rule misclassified sedated patients as comatose."
+  - id: 2
+    date: "2026-10-17"
+    made_after_primary_results: true
+    repository_head_when_recorded: "e81c720"
+    protocol_lock_commit: "8709b89 2026-10-07"
+    headline_constant_first_appears_in_commit: "9c79350 2026-10-07"
+    earliest_auc_result_file_time: "2026-10-07 20:20 (auc_results_hospital_death_strict.csv)"
+    changes:
+      - "Headline comparator: SOFA-1 as charted is the headline comparator (HEADLINE constant in src/06_auc_bootstrap.py, which labels the primary comparisons). The two SOFA-1 versions remain co-primary in the protocol text and both are reported in full."
+      - "Prespecified analyses that were NOT performed: a domain-available cohort; first ICU stay per patient; a first-hour plus 24-hour window; SOFA-1 with the SOFA-2 brain rules; excluding patients with a psychotic or bipolar disorder diagnosis and adding dexmedetomidine to the delirium drugs; counting mixed-specimen blood gases; counting high-flow nebulizer oxygen as high-flow nasal oxygen; counting paused infusion segments; excluding peritoneal dialysis; including operating-room and recovery-room urine; restricting to stays of at least 24 hours."
+      - "Superseded references: score thresholds are implemented in src/03_sofa1.py and src/04_sofa2.py and plausible ranges in src/common.py (RANGES); the files configs/sofa_mapping.csv, configs/plausible_ranges_INTERIM.yaml and mimic_itemid_map_v0.2.csv, and the scripts 07_bootstrap and 09_sensitivity, were never created and are not used."
+      - "Post hoc: the domain decomposition was extended to separate the SpO2/FiO2 fallback from the new respiratory thresholds after the first decomposition was seen."
