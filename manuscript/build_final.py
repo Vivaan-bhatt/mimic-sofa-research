@@ -361,7 +361,7 @@ assert _log.returncode == 0 and _log.stdout.strip(), "git log failed: build this
 TBL(["Commit", "Date", "Subject"], [l.split("|", 2) for l in _log.stdout.strip().splitlines()], [0.8, 0.9, 4.9], size=7.5)
 CAP("Supplementary Table S8.", "Analysis runs with their recorded settings (from the manifest written by each run). The domain-decomposition and SpO2 analyses write no manifest and used the code default of 2,000 replicates with seed 20251007.")
 _rows = []
-for f in sorted(glob.glob(f"{S}/*manifest*.json")):
+for f in sorted(glob.glob(f"{S}/analysis_manifest_*.json") + glob.glob(f"{S}/calibration_manifest_*.json")):
     m = json.load(open(f)); _rows.append([os.path.basename(f).replace("_manifest", "").replace(".json", ""), str(m.get("outcome", "")), str(m.get("window", "")), str(m.get("B", "")), str(m.get("seed", "")), str(m.get("git_commit", ""))[:7], f"{int(m.get('n_stays', 0)):,}"])
 TBL(["Run", "Outcome", "Window", "Replicates", "Seed", "Commit", "Stays"], _rows, [3.0, 1.0, 0.6, 0.7, 0.8, 0.6, 0.6], size=7)
 

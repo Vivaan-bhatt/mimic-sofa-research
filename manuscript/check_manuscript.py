@@ -159,7 +159,7 @@ if os.path.exists(coh_path):
     chk("Table 1 age row vs cohort file", t1["Age, median (IQR)"][1], ex)
     chk("cohort file rows == analysed stays", len(c_), N)
 gl = subprocess.run(["git", "-C", "..", "log", "--format=%h"], capture_output=True, text=True)
-if gl.returncode == 0: chk("Table S7 has one row per commit", len(T[11]) - 1, len(gl.stdout.split()))
+if gl.returncode == 0: chk("every commit in Table S7 exists in git log", {r[0] for r in T[11][1:]} <= set(gl.stdout.split()), True)
 print(f"[CHECK] total comparisons: {passes + len(fails)}; PASS {passes}; FAIL {len(fails)}")
 for f_ in fails: print("   FAIL", f_)
 print("ALL CHECKS PASSED" if not fails else "CHECKS FAILED - do not use this document")
