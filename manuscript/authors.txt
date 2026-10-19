@@ -1,11 +1,5 @@
-[Keshav Balakrishna¹, Vivaan Bhatt², Alessandro Hammond², Romain Pirracchio³, Adrian H. Zai⁴]
-[¹ University of Texas at Dallas, Richardson, Texas, USA  
-² Harvard University, Cambridge, Massachusetts, USA  
-³ Department of Anesthesia and Perioperative Care, University of California, San Francisco, San Francisco, California, USA  
-⁴ Department of Population and Quantitative Health Sciences, UMass Chan Medical School, Worcester, Massachusetts, USA]
-[Keshav Balakrishna contributed to conceptualization and study design. Vivaan Bhatt led the experimental implementation, data analysis, and interpretation of results. Keshav Balakrishna and Vivaan Bhatt contributed equally to this work. Alessandro Hammond contributed to manuscript review and editing. Romain Pirracchio and Adrian H. Zai provided supervision, mentorship, and critical review of the manuscript. All authors reviewed and approved the final manuscript.]
-[This research received no specific funding.]
-[The authors declare no competing interests.]
-
-
-
+Keshav Balakrishna¹, Vivaan Bhatt², Alessandro Hammond², Romain Pirracchio³, Adrian H. Zai⁴
+¹ University of Texas at Dallas, Richardson, Texas, USA; ² Harvard University, Cambridge, Massachusetts, USA; ³ Department of Anesthesia and Perioperative Care, University of California, San Francisco, San Francisco, California, USA; ⁴ Department of Population and Quantitative Health Sciences, UMass Chan Medical School, Worcester, Massachusetts, USA
+Keshav Balakrishna contributed to conceptualization and study design. Vivaan Bhatt led the experimental implementation, data analysis, and interpretation of results. Keshav Balakrishna and Vivaan Bhatt contributed equally to this work. Alessandro Hammond contributed to manuscript review and editing. Romain Pirracchio and Adrian H. Zai provided supervision, mentorship, and critical review of the manuscript. All authors reviewed and approved the final manuscript.
+This research received no specific funding.
+The authors declare no competing interests.
