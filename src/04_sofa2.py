@@ -260,7 +260,7 @@ res["uo_observed"] = res.index.isin(bins["stay_id"])
 
 cr = res["creatinine_max"]
 cr_pts = np.select([cr > 3.5, cr > 2.0, cr > 1.2], [3, 2, 1], default=np.where(cr.isna(), np.nan, 0))
-uo_pts = np.select([res["run_lt03"] >= 24, res["run_lt05"] >= 12, res["run_lt05"] >= 6], [3, 2, 1], default=0)
+uo_pts = np.select([res["run_lt03"] >= 24, res["run_zero"] >= 12, res["run_lt05"] >= 12, res["run_lt05"] >= 6], [3, 3, 2, 1], default=0)
 base_pts = np.fmax(np.nan_to_num(cr_pts, nan=0), uo_pts)
 rrt_p = proc[proc["itemid"].isin([225441, 225802, 225805])]
 rrt = set(rrt_p.loc[in_window(rrt_p, coh, mode, start_col="starttime", end_col="endtime"), "stay_id"])
@@ -270,7 +270,7 @@ res["rrt_receiving"] = res.index.isin(rrt); res["chronic_dialysis"] = res.index.
 crit_a = (res["creatinine_max"] > 1.2) | (res["run_lt03"] > 6)
 crit_b = (res["potassium_max"] >= 6.0) | ((res["ph_min"] <= 7.20) & (res["bicarbonate_min"] <= 12))
 res["rrt_criteria_only"] = (crit_a & crit_b) & ~res["rrt_receiving"] & ~res["chronic_dialysis"]
-four_core = res["rrt_receiving"] | res["chronic_dialysis"] | (res["run_zero"] >= 12)
+four_core = res["rrt_receiving"] | res["chronic_dialysis"]
 res["renal_pts"] = np.where(four_core | res["rrt_criteria_only"], 4, base_pts)
 res["renal_pts_norrt_criteria"] = np.where(four_core, 4, base_pts)
 obs_k = res["creatinine_max"].notna() | res["uo_observed"] | res["rrt_receiving"] | res["chronic_dialysis"]
